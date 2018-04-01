@@ -3,8 +3,10 @@ import math
 import time
 import tensorflow as tf 
 
+# this program is to setup a 2-output (Ture / False)
+# purpose is to train / inference photo has been modified or not
 
-class VGG19_1000_inference() : 
+class VGG19_2_inference() :
     def __init__(self, input_op, keep_prob): 
         self.p = []
         self.keep_prob = keep_prob
@@ -51,7 +53,7 @@ class VGG19_1000_inference() :
         self.fc7 = self.fc_op (self.fc6_drop, name = "fc7", n_out=4096, p = self.p)
         self.fc7_drop = tf.nn.dropout(self.fc7, self.keep_prob, name = "fc7_drop")
         #FC 3
-        self.fc8 = self.fc_op (self.fc7_drop, name = "fc8", n_out = 1000, p=self.p)
+        self.fc8 = self.fc_op (self.fc7_drop, name = "fc8", n_out = 2, p=self.p)
         # Full result output
         self.softmax = tf.nn.softmax(self.fc8)
         # predictions

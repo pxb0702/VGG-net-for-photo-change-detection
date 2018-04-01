@@ -2,11 +2,12 @@ from datetime import datetime
 import math
 import time
 import tensorflow as tf 
-import VGG_19_1000_inference as VGG
+import VGG_19_2_inference as VGG
 
 batch_size = 32
 num_batches = 100
 
+# this is to test the 2-output VGG 19 inference
 
 def time_tensorflow_run (session, target,info_string) : 
     num_steps_burn_in = 10
@@ -45,7 +46,7 @@ def run_benchmark() :
         #keep_prob = tf.placeholder(tf.float32) 
         # predictions, softmax, fc8, p = inference_op(images, keep_prob)
         keep_prob = 1.0
-        VGG_19_net = VGG.VGG19_1000_inference(images, keep_prob)
+        VGG_19_net = VGG.VGG19_2_inference(images, keep_prob)
         init = tf.global_variables_initializer()
         sess = tf.Session()
         sess.run(init)
